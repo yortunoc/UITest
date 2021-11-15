@@ -1,7 +1,5 @@
 import os
-import time
 
-from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 
 from core.pages.BasePage import BasePage
@@ -32,9 +30,6 @@ class CheckoutSection(BasePage):
             self.promoCodeInput.set_text(promo_code)
             self.applyCodeBtn.click_button()
         upload_xpath = '//div[@class="CustomerInfo__dropzone-box___27VMo"]//following-sibling::input'
-        self.driver.find_element(By.XPATH, upload_xpath).send_keys(os.getcwd() + "\\resources\\image.jpeg")
+        self.driver.find_element(By.XPATH, upload_xpath).send_keys(os.getcwd() + path_image)
         self.conditionChk.click_button()
         self.payNowBtn.click_button()
-
-
-

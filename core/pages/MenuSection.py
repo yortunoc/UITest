@@ -15,11 +15,18 @@ class MenuSection(BasePage):
     }
 
     def logout(self):
+        """
+        This method logout when a user is logued in page
+        """
         self.driver.find_element(By.TAG_NAME, 'body').send_keys(Keys.CONTROL + Keys.HOME)
         self.userBtn.click_button()
         self.logoutBtn.click_button()
 
     def login(self):
+        """
+        This method perform a click in login button
+        :return: The instance of login Page
+        """
         self.driver.find_element(By.TAG_NAME, 'body').send_keys(Keys.CONTROL + Keys.HOME)
         self.loginBtn.click_button()
         return LoginPage()

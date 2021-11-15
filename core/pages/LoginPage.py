@@ -13,6 +13,11 @@ class LoginPage(BasePage):
     }
 
     def login_page(self, username, password):
+        """
+        This method fill the form and login into page
+        :param username: The user name to login
+        :param password: The password to login
+        """
         self.loginInput.set_text(username)
         self.passwordInput.set_text(password)
         self.singinBtn.click_button()

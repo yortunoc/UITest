@@ -1,5 +1,5 @@
 from selenium.common.exceptions import StaleElementReferenceException
-from selenium.webdriver import Keys, ActionChains
+from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
@@ -21,6 +21,10 @@ class SpaceAndBeyondSection(BasePage):
     }
 
     def select_department_date(self, day):
+        """
+        This method select a date in department input
+        :param day:  The day to select
+        """
         actions = ActionChains(self.driver)
         actions.move_to_element(self.departmentInput).perform()
         # self.driver.find_element(By.TAG_NAME, 'body').send_keys(Keys.CONTROL + Keys.HOME)
@@ -28,21 +32,43 @@ class SpaceAndBeyondSection(BasePage):
         self.select_day_and_ok(day)
 
     def select_returning_date(self, day):
+        """
+        This method select a date in returning input
+        :param day:  The day to select
+        """
         actions = ActionChains(self.driver)
         actions.move_to_element(self.returnIngInput).perform()
         # self.driver.find_element(By.TAG_NAME, 'body').send_keys(Keys.CONTROL + Keys.HOME)
         self.returnIngInput.click_button()
         self.select_day_and_ok(day)
 
-    def select_adults(self, adults):
+    def select_adults(self, adults=0):
+        """
+        This method select the number of adults
+        :param adults: The number of adults
+        """
         self.adultsInput.click_button()
-        self.select_list('Adults', adults)
+        if adults != 0:
+            self.select_list('Adults', adults)
+        else:
+            self.select_list('Adults', 'Adults (18+)')
 
-    def select_children(self, children):
+    def select_children(self, children=0):
+        """
+        This method select the number of children
+        :param children: The number of children
+        """
         self.childrenInput.click_button()
-        self.select_list('Children', children)
+        if children !=0:
+            self.select_list('Children', children)
+        else:
+            self.select_list('Children', 'Children (0-7)')
 
     def select_day_and_ok(self, day):
+        """
+        This method find the element an select it after perform click in Ok button
+        :param day: The day to select
+        """
         day_xpath = '//span[text()="{}"]'.format(day)
         try:
             day_element = self.driver.find_element(By.XPATH, day_xpath)
@@ -57,6 +83,11 @@ class SpaceAndBeyondSection(BasePage):
         self.okDateBtn.click_button()
 
     def select_list(self, name, value):
+        """
+        This method select value from list and click on element
+        :param name: The name of list
+        :param value: The value of list
+        """
         element_xpath = '//li[contains(text(), "{}")]//parent::ul/li[text()="{}"]'.format(name, value)
         element = self.driver.find_element(By.XPATH, element_xpath)
         WebDriverWait(self.driver, EXPLICIT_WAIT).until(
