@@ -14,6 +14,8 @@ class DestinationSection(BasePage):
         "travelerLbl": ('XPATH', '//h3[contains(text(), "traveler")]'),
         "LoadMoreBtn": ('XPATH', '//button[contains(text(), "Load more")]'),
         "priceSlideBar": ('class_name', 'PurpleSlider__innerknob___2wxLd'),
+        "launchDrDw": ('XPATH', '//li[text()="Launch"]//parent::ul//parent::div//input'),
+        "planetColorDrDw": ('XPATH', '//li[text()="Planet color"]//parent::ul//parent::div//input'),
         "priceInput": ('XPATH', '//div[contains(@class,"PurpleSlider__input___3H1SF")]/input'),
         **BasePage.locators
     }
@@ -44,3 +46,23 @@ class DestinationSection(BasePage):
         price_list_destination = '//button[contains(text(), "Book" )]//parent::div/span'
         price_list_elements = self.driver.find_elements(By.XPATH, price_list_destination)
         return price_list_elements
+
+    def select_all_destination(self):
+        """
+        This methods gets all destination
+        :return: the destination element information
+        """
+        destinations_xpath = '//div[@class="Box__box___2XzJ2 Gallery__items-box___2hOZl"]'
+
+        destination_elements = self.driver.find_elements(By.XPATH, destinations_xpath)
+        return destination_elements
+
+    def select_launch_drop_down(self, launch_name):
+        """
+        This method click on launch drop down and select an item of them
+        :param launch_name: The launch name
+        """
+        self.launchDrDw.click_button()
+        launch_element = self.driver.find_element(By.XPATH, '//li[text()="{}"]'.format(launch_name))
+        WebDriverWait(self.driver, EXPLICIT_WAIT).until(EC.element_to_be_clickable(launch_element))
+        launch_element.click()

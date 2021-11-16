@@ -93,3 +93,15 @@ class TestUIDestinations:
                                                                          "more {}after click in load more " \
                                                                          "button".format(len(actual_destination_list),
                                                                                          len(old_destination_list))
+
+    def test_verify_destination_drop_down(self):
+        """
+        Test to very that after select a launch all item should be related with it
+        """
+        destination_section = DestinationSection()
+        launch_name = 'Shaheying'
+        destination_section.select_launch_drop_down(launch_name)
+        all_destination = destination_section.select_all_destination()
+        for destination in all_destination:
+            assert launch_name in destination.text, "Destination should contains {} " \
+                                                    "but actual is {}".format(launch_name, destination.text)
