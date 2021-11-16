@@ -27,7 +27,6 @@ class SpaceAndBeyondSection(BasePage):
         """
         actions = ActionChains(self.driver)
         actions.move_to_element(self.departmentInput).perform()
-        # self.driver.find_element(By.TAG_NAME, 'body').send_keys(Keys.CONTROL + Keys.HOME)
         self.departmentInput.click_button()
         self.select_day_and_ok(day)
 
@@ -38,7 +37,6 @@ class SpaceAndBeyondSection(BasePage):
         """
         actions = ActionChains(self.driver)
         actions.move_to_element(self.returnIngInput).perform()
-        # self.driver.find_element(By.TAG_NAME, 'body').send_keys(Keys.CONTROL + Keys.HOME)
         self.returnIngInput.click_button()
         self.select_day_and_ok(day)
 

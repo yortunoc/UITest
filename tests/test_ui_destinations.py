@@ -44,7 +44,6 @@ class TestUIDestinations:
         price_limit = float(price_limit.replace('%', ''))
         for price_element in price_list_elements:
             price_destination = float(price_element.text.replace('$', ''))
-            print("{} ------ {}".format(price_destination, price_limit))
             assert price_destination <= price_limit
 
     def test_checkout_destination(self):
