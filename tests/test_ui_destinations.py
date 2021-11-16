@@ -51,6 +51,9 @@ class TestUIDestinations:
         """
         This test verify the checkout destination, fill all values in form and click in pay now
         """
+        menu = MenuSection()
+        login_page = menu.login()
+        login_page.login_page(username='yury', password='yver')
         destination_destination = DestinationSection()
         checkout_section = destination_destination.select_specific_destination('Shenji')
         checkout_section.fill_form_checkout('yury', 'yury@gmail.com', '123-45-6789', 419, '/resources/image.jpeg',

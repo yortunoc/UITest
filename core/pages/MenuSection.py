@@ -16,7 +16,7 @@ class MenuSection(BasePage):
 
     def logout(self):
         """
-        This method logout when a user is logued in page
+        This method logout when a user is logout in page
         """
         self.driver.find_element(By.TAG_NAME, 'body').send_keys(Keys.CONTROL + Keys.HOME)
         self.userBtn.click_button()
